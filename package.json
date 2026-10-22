@@ -1,0 +1,49 @@
+{
+  "name": "ramp-radar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Compare Onramper quotes, sign checkout intents with Signature V2, and handle webhooks safely.",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "tsx watch --env-file-if-exists=.env server/index.ts",
+    "dev:web": "vite",
+    "build": "vite build",
+    "start": "tsx --env-file-if-exists=.env server/index.ts",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "demo:webhooks": "tsx --env-file-if-exists=.env scripts/send-webhooks.ts",
+    "keys": "tsx scripts/gen-keys.ts"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0",
+    "typescript-eslint": "^8.72.0",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}
